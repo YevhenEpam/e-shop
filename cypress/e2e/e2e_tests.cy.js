@@ -19,9 +19,9 @@ describe('E-shop', () => {
     it('Verify that "Computers" group has 3 sub-groups with correct names', () => {
         
         helper.visitUrl();
-        helper.getElement('.top-menu > li:nth-of-type(2) > a').trigger('mouseover');
+        helper.getElement(helper.computersCategoryButton).trigger('mouseover');
         const expectedSubGroups = ['Desktops', 'Notebooks', 'Accessories'];
-        helper.getElement('ul.sublist.firstLevel.active li a')
+        helper.getElement(helper.computerCategoryList)
             .should('have.length', 3)
             .each(($el, index) => {
                 expect($el.text().trim()).to.equal(expectedSubGroups[index]);
@@ -67,9 +67,9 @@ describe('E-shop', () => {
     it('Verify that allows adding an item to the Wishlist', () => {
         
         helper.visitUrl('/black-white-diamond-heart');
-        helper.getElement('#add-to-wishlist-button-14').click();
+        helper.getElement(helper.addToWishlistButton).click();
         helper.getElement('.content').should('be.visible');
-        helper.getElement('.wishlist-qty').should('have.text','(1)');
+        helper.getElement(helper.wishlistQuantityIcon).should('have.text','(1)');
     });
 
     it('Verify that allows adding an item to the cart', () => {
@@ -82,7 +82,7 @@ describe('E-shop', () => {
 
     it('Verify that allows checkout an item ', () => {
         
-        helper.visitUrl()
+        helper.visitUrl();
         helper.UserLogin();
         helper.visitUrl('/black-white-diamond-heart');
         helper.addItemToCart();

@@ -40,6 +40,10 @@ export default class BaseHelper {
     paymentInformationContinue = '#payment-info-buttons-container input[value="Continue"] ';
     orderConfirmButton = '#confirm-order-buttons-container input[value="Confirm"] '
     orderSuccessMessage = '.section.order-completed div strong';
+    computersCategoryButton = '.top-menu > li:nth-of-type(2) > a';
+    computerCategoryList = 'ul.sublist.firstLevel.active li a';
+    addToWishlistButton = '#add-to-wishlist-button-14';
+    wishlistQuantityIcon = '.wishlist-qty';
 
     visitUrl(url = 'https://demowebshop.tricentis.com/') {
         return cy.visit(url);
