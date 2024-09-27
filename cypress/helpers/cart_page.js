@@ -98,14 +98,14 @@ class CartPage extends BasePage{
         cy.visit(url);
         return this;
     }
-    addItemToCart() {
+    addItemToCart() {//todo: it is better to name such methods as clickAddToCartButton() - it is more clear
         this.addToCartButton.click();
         return this;
     };
 
     checkIfItemAddedSuccessfullyToCart() {
         this.addToCartSuccessMessage.should('be.visible');
-        this.shoppingCartButton.click();
+        this.shoppingCartButton.click();//todo: it is better to create method clickShoppingCartButton(), and move all these steps with checking to the test
         this.productCartList.should('be.visible');
         return this;
     }
@@ -132,7 +132,7 @@ class CartPage extends BasePage{
         this.paymentMethodContinue.click();
         this.paymentInformationContinue.click();
         this.orderConfirmButton.click();
-        // this.orderSuccessMessage.should('be.visible');
+        // this.orderSuccessMessage.should('be.visible'); //todo: please remove commented lines
         return this;
     }
 }

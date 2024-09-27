@@ -91,7 +91,7 @@ class HomePage extends BasePage {
         return `test+${randomString}@example.com`;
     }
 
-    userRegistration() {
+    userRegistration() { //todo: it is better to name your method as an action like registerUser()
         const userEmail = this.generateRandomEmail();
         this.userEmail = userEmail;
         this.registerButton.click()
@@ -105,7 +105,7 @@ class HomePage extends BasePage {
         return this;
     }
 
-    userLogin(userEmail, userPassword) {
+    userLogin(userEmail, userPassword) {//todo: why do you need this parameters? you didn't use it in test
         this.logoutButton.click();
         this.loginButton.click();
         this.emailField.type(this.userEmail);
