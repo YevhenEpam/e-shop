@@ -80,6 +80,13 @@ class HomePage extends BasePage {
     get perPageSelector() {
         return cy.get('#products-pagesize');
     };
+    get desktopButton() {
+        return cy.get('.top-menu .firstLevel [href=\'/desktops\']');
+    }
+
+    get shoesButton() {
+        return cy.get('.header-menu .top-menu [href="/apparel-shoes"]');
+    }
 
     visitUrl(url = 'https://demowebshop.tricentis.com/') {
         cy.visit(url);
@@ -91,7 +98,7 @@ class HomePage extends BasePage {
         return `test+${randomString}@example.com`;
     }
 
-    userRegistration() {
+    registerUser() {
         const userEmail = this.generateRandomEmail();
         this.userEmail = userEmail;
         this.registerButton.click()
@@ -105,7 +112,7 @@ class HomePage extends BasePage {
         return this;
     }
 
-    userLogin(userEmail, userPassword) {
+    userLogin() {
         this.logoutButton.click();
         this.loginButton.click();
         this.emailField.type(this.userEmail);
@@ -148,11 +155,6 @@ class HomePage extends BasePage {
             });
     }
 
-    checkProductsPerPage (number) {
-        this.perPageSelector.select(number.toString());
-        this.productsTitle.should('have.length', number);
-        return this;
-    }
 }
 
 export const homePage = new HomePage();

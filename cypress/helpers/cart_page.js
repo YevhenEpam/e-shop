@@ -10,9 +10,9 @@ class CartPage extends BasePage{
         return cy.get('.content');
     };
 
-    get shoppingCartButton() {
-        return cy.get('#topcartlink a');
-    };
+    get clickShoppingCartButton() {
+        return cy.get('#topcartlink a').click()
+    }
 
     get productCartList() {
         return cy.get('tbody .product');
@@ -86,34 +86,23 @@ class CartPage extends BasePage{
         return cy.get('.section.order-completed div strong');
     };
 
-    get addToWishlistButton() {
-        return cy.get('#add-to-wishlist-button-14');
-    };
-
     get wishlistQuantityIcon() {
         return cy.get('.wishlist-qty');
     };
 
-    visitUrl(url = 'https://demowebshop.tricentis.com/black-white-diamond-heart') {
+    visitUrl(url = 'https://demowebshop.tricentis.com') {
         cy.visit(url);
         return this;
     }
-    addItemToCart() {
+    clickAddToCartButton() {
         this.addToCartButton.click();
         return this;
     };
 
     checkIfItemAddedSuccessfullyToCart() {
         this.addToCartSuccessMessage.should('be.visible');
-        this.shoppingCartButton.click();
+        this.clickShoppingCartButton
         this.productCartList.should('be.visible');
-        return this;
-    }
-
-    removeItemFromCart() {
-        this.cartCheckBox.click();
-        this.updateShoppingCartButton.click();
-        this.productCartList.should('not.exist');
         return this;
     }
 
@@ -132,9 +121,23 @@ class CartPage extends BasePage{
         this.paymentMethodContinue.click();
         this.paymentInformationContinue.click();
         this.orderConfirmButton.click();
-        // this.orderSuccessMessage.should('be.visible');
         return this;
     }
+
+    get clickJewelryButton() {
+        cy.get('.header-menu .top-menu [href="/jewelry"]').click()
+        return this
+    }
+    get clickDiamondItem() {
+        cy.get('.picture [href="/black-white-diamond-heart"]').click();
+        return this
+    }
+
+    get clickAddToWishlistBtn() {
+        cy.get('#add-to-wishlist-button-14').click()
+        return this
+    };
+
 }
 
 export const cartPage = new CartPage();
